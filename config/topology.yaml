@@ -1,0 +1,106 @@
+project_name: NetIntent-Agent
+
+hosts:
+  student_host:
+    ip: 10.0.0.1
+    role: student
+    mininet_name: stu
+  teacher_host:
+    ip: 10.0.0.2
+    role: teacher
+    mininet_name: tea
+  admin_server:
+    ip: 10.0.0.10
+    role: management_server
+    mininet_name: admin
+  client_host:
+    ip: 10.0.1.1
+    role: client
+    mininet_name: cli
+  server:
+    ip: 10.0.1.10
+    role: service_server
+    mininet_name: ser
+
+switches:
+  - s1
+  - s2
+  - s3
+  - s4
+  - s5
+
+links:
+  access_control:
+    - [student_host, s1]
+    - [teacher_host, s1]
+    - [s1, s2]
+    - [s2, admin_server]
+  latency_primary:
+    - [client_host, s3]
+    - [s3, s4]
+    - [s4, server]
+  latency_backup:
+    - [client_host, s3]
+    - [s3, s5]
+    - [s5, s4]
+    - [s4, server]
+
+named_links:
+  student_s1:
+    node1: student_host
+    node2: s1
+    delay_ms: 5
+  teacher_s1:
+    node1: teacher_host
+    node2: s1
+    delay_ms: 5
+  s1_s2:
+    node1: s1
+    node2: s2
+    delay_ms: 5
+  s2_admin:
+    node1: s2
+    node2: admin_server
+    delay_ms: 5
+  client_s3:
+    node1: client_host
+    node2: s3
+    delay_ms: 5
+  s3_s4_primary:
+    node1: s3
+    node2: s4
+    delay_ms: 10
+  s3_s5_backup:
+    node1: s3
+    node2: s5
+    delay_ms: 20
+  s5_s4_backup:
+    node1: s5
+    node2: s4
+    delay_ms: 20
+  s4_server:
+    node1: s4
+    node2: server
+    delay_ms: 5
+
+paths:
+  client_to_server_primary:
+    - client_host
+    - s3
+    - s4
+    - server
+  client_to_server_backup:
+    - client_host
+    - s3
+    - s5
+    - s4
+    - server
+
+allowed_command_prefixes:
+  - ping
+  - iperf
+  - iptables
+  - ovs-ofctl
+  - tc
+  - mn
+  - mininet
