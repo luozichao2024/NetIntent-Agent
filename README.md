@@ -71,5 +71,6 @@ pytest
 
 ## 贡献者 / Contributors
 
+- [@luozichao2024](https://github.com/luozichao2024)
 - [@hjs0827](https://github.com/hjs0827)
 - [@RuilinLi-L](https://github.com/RuilinLi-L)
