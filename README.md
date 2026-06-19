@@ -69,4 +69,7 @@ pytest
 - **Executor Agent**: 作为底座执行器，将高维策略翻译为具体的底层设备配置命令（支持白名单机制以确保安全）。
 - **Verifier Agent**: 负责闭环校验，通过网络遥测工具监测实际运行状态。一旦检测到偏离预期的异常（如延迟过高），立刻触发重新规划。
 
-> **声明：** 本项目中不包含任何学校、团队或个人的身份信息。
+## 贡献者 / Contributors
+
+- [@hjs0827](https://github.com/hjs0827)
+- [@RuilinLi-L](https://github.com/RuilinLi-L)
